@@ -1,0 +1,125 @@
+{
+  "uuid": "6441b447-ee40-4762-8a55-934a08723056",
+  "lastMigration": 32,
+  "name": "Mockoon rider companion",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "6ac17028-f25b-47ad-ac5e-95ea62f5bf0d",
+      "type": "http",
+      "documentation": "RiderCompanionAPI",
+      "method": "get",
+      "endpoint": "driver/profiles/pending",
+      "responses": [
+        {
+          "uuid": "6168c199-9c19-4bd2-abdf-d3ec30e6c796",
+          "body": "[\r\n  { \"id\": 1, \"name\": \"Mohamed Joe\", \"status\": \"pending\", \"documents\": \"doc1.pdf\" },\r\n  { \"id\": 2, \"name\": \"Marc Sidi\", \"status\": \"pending\", \"documents\": \"doc2.pdf\" }\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "fc5c5030-9f5c-42c7-a808-a08cfe33431e",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "driver/validate-profile/:id",
+      "responses": [
+        {
+          "uuid": "777baf8b-419c-407c-b3af-e610f1cb4ec2",
+          "body": "{ \"message\": \"Profile status updated\" }",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "6ac17028-f25b-47ad-ac5e-95ea62f5bf0d"
+    },
+    {
+      "type": "route",
+      "uuid": "fc5c5030-9f5c-42c7-a808-a08cfe33431e"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}
