@@ -17,7 +17,7 @@
       "responses": [
         {
           "uuid": "6168c199-9c19-4bd2-abdf-d3ec30e6c796",
-          "body": "[\r\n  { \"id\": 1, \"name\": \"Mohamed Joe\", \"status\": \"pending\", \"documents\": \"doc1.pdf\" },\r\n  { \"id\": 2, \"name\": \"Marc Sidi\", \"status\": \"pending\", \"documents\": \"doc2.pdf\" }\r\n]",
+          "body": "[\r\n  { \"id\": 1, \"name\": \"Mohamed Joe\", \"status\": \"pending\", \"documents\": \"doc1.pdf\" },\r\n  { \"id\": 2, \"name\": \"Marc Sidi\", \"status\": \"pending\", \"documents\": \"doc2.pdf\" },\r\n  { \"id\": 3, \"name\": \"Sarah Joel\", \"status\": \"active\", \"documents\": \"doc3.pdf\" }\r\n\r\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",

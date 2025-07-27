@@ -2,9 +2,15 @@ import { useState, useEffect } from 'react';
 import { Typography, Button, List, ListItem, ListItemText } from '@mui/material';
 import axios from 'axios';
 
+import { NotificationsNone as BellIcon } from '@mui/icons-material'; // Ajout de l'icône clochette
+
+
 const ProfileValidation = () => {
-    const [profiles, setProfiles] = useState<{ id: number; name: string; status: string; documents: string }[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // État fictif pour le login/logout
+    const handleLoginLogout = () => {
+        setIsLoggedIn(!isLoggedIn); // Toggle login/logout fictif
+    };
+    const [profiles, setProfiles] = useState<{ id: number; name: string; status: 'pending' | 'active' | 'inactive'; documents: string }[]>([]);    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_BASE_URL}/driver/profiles/pending`)
@@ -13,23 +19,41 @@ const ProfileValidation = () => {
             .finally(() => setLoading(false));
     }, []);
 
-    const handleValidate = (id: number) => {
-        axios.post(`${process.env.REACT_APP_API_BASE_URL}/driver/validate-profile/${id}`, { status: 'validated' })
+    const handleActivate = (id: number) => {
+        if (window.confirm('Are you sure you want to activate this captain?')) {
+            axios.post(`${process.env.REACT_APP_API_BASE_URL}/driver/validate-profile/${id}`, { status: 'validated' })
             .then(() => setProfiles(profiles.filter(profile => profile.id !== id)))
             .catch(error => console.error('Error validating profile:', error));
     };
+    }
 
-    const handleReject = (id: number) => {
-        axios.post(`${process.env.REACT_APP_API_BASE_URL}/driver/validate-profile/${id}`, { status: 'rejected' })
+    const handleDeactivate = (id: number) => {
+        if (window.confirm('Are you sure you want to deactivate this captain?')) {
+        axios.post(`${process.env.REACT_APP_API_BASE_URL}/driver/validate-profile/${id}`, { status: 'inactive' })
             .then(() => setProfiles(profiles.filter(profile => profile.id !== id)))
-            .catch(error => console.error('Error rejecting profile:', error));
+            .catch(error => console.error('Error deactivating profile:', error));
     };
+    }
 
     if (loading) return <Typography>Loading...</Typography>;
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="p-4 max-w-2xl w-full bg-green-500">
+        <div className="min-h-screen flex flex-col bg-gray-100">
+
+                 <header className="bg-white shadow-md p-4 flex justify-between items-center">
+                   <div className="text-2xl font-bold text-blue-600">Rider Companion Logo</div> {/* Placeholder pour le logo */}
+                   <nav className="space-x-4">
+                     <a href="#" className="text-gray-700 hover:text-blue-600" onClick={handleLoginLogout}>
+                       {isLoggedIn ? 'Logout' : 'Login'}
+                     </a>
+                     <a href="#" className="text-gray-700 hover:text-blue-600">
+                       <BellIcon /> {/* Icône clochette pour Centre de notif */}
+                     </a>
+                     <a href="#" className="text-gray-700 hover:text-blue-600">Orders</a>
+                     <a href="#" className="text-gray-700 hover:text-blue-600">Captain Monitoring</a>
+                   </nav>
+                 </header>
+                 <main className="flex-grow p-4">
                 <Typography variant="h4" className="text-2xl font-bold mb-4 text-center text-gray-800">
                     Validate Captain Profiles
                 </Typography>
@@ -37,7 +61,7 @@ const ProfileValidation = () => {
                     {profiles.map(profile => (
                         <ListItem
                             key={profile.id}
-                            className="flex justify-between items-center border-b border-gray-200 hover:bg-gray-50 transition-colors"
+                            className="flex justify-between items-center border-b border-gray-200 hover:bg-gray-50"
                         >
                             <ListItemText
                                 primary={profile.name}
@@ -45,28 +69,37 @@ const ProfileValidation = () => {
                                 className="text-gray-700"
                             />
                             <div className="space-x-2">
+                                {profile.status === 'pending' && (
                                 <Button
                                     variant="contained"
                                     color="primary"
                                     className="bg-blue-600 hover:bg-blue-700"
-                                    onClick={() => handleValidate(profile.id)}
+                                    onClick={() => handleActivate(profile.id)}
                                 >
                                     Validate
                                 </Button>
-                                <Button
+                                )}
+                                {profile.status === 'active' && (
+
+                                    <Button
                                     variant="contained"
                                     color="secondary"
                                     className="bg-purple-600 hover:bg-purple-700"
-                                    onClick={() => handleReject(profile.id)}
+                                    onClick={() => handleDeactivate(profile.id)}
                                 >
                                     Reject
                                 </Button>
+                                )}
                             </div>
                         </ListItem>
                     ))}
                 </List>
-            </div>
-        </div>
+
+                 </main>
+               <footer className="bg-white shadow-inner p-4 text-center text-gray-600">
+                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                 </footer>
+               </div>
     );
 };
 
