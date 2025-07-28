@@ -65,6 +65,64 @@
         }
       ],
       "responseMode": null
+    },
+    {
+      "uuid": "16d7dcec-4455-4b0b-92e0-e90372a05f23",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "orders",
+      "responses": [
+        {
+          "uuid": "2f10ee1f-2113-44c7-8821-2bf58e24a176",
+          "body": "[\r\n  {\r\n    \"id\": 1,\r\n    \"date\": \"2025-07-20T12:00:00Z\",\r\n    \"id_capitain\": 1,\r\n    \"montant\": 150.0,\r\n    \"devise\": \"EUR\",\r\n    \"status\": \"completed\"\r\n  },\r\n  {\r\n    \"id\": 2,\r\n    \"date\": \"2025-07-22T10:30:00Z\",\r\n    \"id_capitain\": 1,\r\n    \"montant\": 200.0,\r\n    \"devise\": \"EUR\",\r\n    \"status\": \"pending\"\r\n  }\r\n]\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "f147313c-5cc8-43e4-8ffd-538e825418db",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "capitains",
+      "responses": [
+        {
+          "uuid": "017d1afc-4035-4c1c-98a8-7c19c3ccff13",
+          "body": "[\r\n  {\r\n    \"id\": 1,\r\n    \"balance\": 300.0\r\n  },\r\n  {\r\n    \"id\": 2,\r\n    \"balance\": 500.0\r\n  }\r\n]\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
     }
   ],
   "rootChildren": [
@@ -75,6 +133,14 @@
     {
       "type": "route",
       "uuid": "fc5c5030-9f5c-42c7-a808-a08cfe33431e"
+    },
+    {
+      "type": "route",
+      "uuid": "16d7dcec-4455-4b0b-92e0-e90372a05f23"
+    },
+    {
+      "type": "route",
+      "uuid": "f147313c-5cc8-43e4-8ffd-538e825418db"
     }
   ],
   "proxyMode": false,
