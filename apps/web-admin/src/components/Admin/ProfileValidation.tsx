@@ -41,16 +41,7 @@ const ProfileValidation = () => {
     return (
         <div className="min-h-screen flex flex-col bg-gray-100">
 
-            <Header
-                       logoText="Rider Companion Logo"
-                       isLoggedIn={isLoggedIn}
-                       onLoginLogout={handleLoginLogout}
-                       menuItems={[
-                         { label: 'Bell', onClick: () => {} },
-                         { label: 'Orders', onClick: () => {} },
-                         { label: 'Captain Monitoring', onClick: () => {} },
-                       ]}
-                     />
+            <Header logoText="Rider Companion Logo" isLoggedIn={isLoggedIn} onLoginLogout={handleLoginLogout} />
                  <main className="flex-grow p-4">
                 <Typography variant="h4" className="text-2xl font-bold mb-4 text-center text-gray-800">
                     Validate Captain Profiles
