@@ -4,7 +4,8 @@ import axios from 'axios';
 
 import { NotificationsNone as BellIcon } from '@mui/icons-material'; // Ajout de l'icône clochette
 
-
+import Header from './Header';
+import Footer from './Footer';
 const ProfileValidation = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false); // État fictif pour le login/logout
     const handleLoginLogout = () => {
@@ -40,19 +41,16 @@ const ProfileValidation = () => {
     return (
         <div className="min-h-screen flex flex-col bg-gray-100">
 
-                 <header className="bg-white shadow-md p-4 flex justify-between items-center">
-                   <div className="text-2xl font-bold text-blue-600">Rider Companion Logo</div> {/* Placeholder pour le logo */}
-                   <nav className="space-x-4">
-                     <a href="#" className="text-gray-700 hover:text-blue-600" onClick={handleLoginLogout}>
-                       {isLoggedIn ? 'Logout' : 'Login'}
-                     </a>
-                     <a href="#" className="text-gray-700 hover:text-blue-600">
-                       <BellIcon /> {/* Icône clochette pour Centre de notif */}
-                     </a>
-                     <a href="#" className="text-gray-700 hover:text-blue-600">Orders</a>
-                     <a href="#" className="text-gray-700 hover:text-blue-600">Captain Monitoring</a>
-                   </nav>
-                 </header>
+            <Header
+                       logoText="Rider Companion Logo"
+                       isLoggedIn={isLoggedIn}
+                       onLoginLogout={handleLoginLogout}
+                       menuItems={[
+                         { label: 'Bell', onClick: () => {} },
+                         { label: 'Orders', onClick: () => {} },
+                         { label: 'Captain Monitoring', onClick: () => {} },
+                       ]}
+                     />
                  <main className="flex-grow p-4">
                 <Typography variant="h4" className="text-2xl font-bold mb-4 text-center text-gray-800">
                     Validate Captain Profiles
@@ -96,9 +94,7 @@ const ProfileValidation = () => {
                 </List>
 
                  </main>
-               <footer className="bg-white shadow-inner p-4 text-center text-gray-600">
-                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                 </footer>
+                   <Footer content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
                </div>
     );
 };
